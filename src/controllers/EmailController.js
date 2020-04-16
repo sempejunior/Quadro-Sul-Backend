@@ -22,7 +22,7 @@ module.exports = {
         console.log("Usuario decriptado 2: " + $user);
         console.log("Senha decriptado 2: " + $authorization);
 
-        const { from, subject, message } = request.body;
+        const { from, subject, message, to } = request.body;
 
         var transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -35,7 +35,7 @@ module.exports = {
 
         var mailOptions = {
             from: from,
-            to: "quadrosul@terra.com.br",
+            to: to,
             subject: subject,
             text: message
         };
