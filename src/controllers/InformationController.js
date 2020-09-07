@@ -2,7 +2,6 @@ const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const algorithm = 'aes-256-cbc';
 const key = 'quadrosul';
-require('dotenv/config');
 
 
 function decrypt(data) {
@@ -14,15 +13,11 @@ function decrypt(data) {
 
 module.exports = {
 
-    async sendMail(request, response) {
+    async getInformation(request, response) {
         var { user, authorization } = request.headers;
 
-        console.log("TESTE ENV: " + process.env.EMAIL);
-        console.log("TESTE ENV: " + process.env.PASSWORD);
-
-
-        var $user = process.env.EMAIL;
-        var $authorization = process.env.PASSWORD;
+        var $user = decrypt(user);
+        var $authorization = decrypt(authorization);
 
         console.log("Usuario decriptado 2: " + $user);
         console.log("Senha decriptado 2: " + $authorization);
